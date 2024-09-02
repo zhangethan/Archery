@@ -1048,6 +1048,20 @@ class OracleEngine(EngineBase):
                                 affected_rows=0,
                                 execute_time=0,
                             )
+                    elif re.match(r"^comment\s+on\s+table|column",sql_lower):        
+                        result = ReviewResult(
+                            id=line,
+                            errlevel=0,
+                            stagestatus="Audit completed",
+                            errormessage="None",
+                            sql=sqlitem.statement,
+                            stmt_type=sqlitem.stmt_type,
+                            object_owner=sqlitem.object_owner,
+                            object_type=sqlitem.object_type,
+                            object_name=sqlitem.object_name,
+                            affected_rows=0,
+                            execute_time=0,
+                        )
                     else:
                         result = ReviewResult(
                             id=line,
